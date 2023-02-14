@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Live</title>
+  <script src="./dist/tailwindcss.js"></script>
+</head>
+<body>
+  <!-- wrapper -->
+  <div class="absolute top-[50%] left-[50%] translate-y-[-50%] w-[960px] text-[#ede7e3]
+    translate-x-[-50%] rounded-lg text-xl text-[1.5rem] drop-shadow-5lg shadow-[#1E293B]">
+    <div>
+      <canvas id="canvasVideoLive" class="w-full aspect-[5/3]
+            bg-[#eff7f6] border-[#ECF8F8] rounded-lg"></canvas>
+    </div>
+    <div class="mt-[0.25%] w-[60%] mx-auto">
+      <center>
+        <p class="py-[1.5%] text-white mx-[50px] bg-[#3C3C3C] mx-auto w-[50%rem] rounded-b-[10px]">
+          Canvas 👻: Insert me an image please
+        </p>
+        <div class="w-[2.5%] h-[2.5%] bg-[#3C3C3C]"></div>
+        <button id="switchButton" class="bg-green-500 text-white text-[1.5rem] mt-[10%] 
+          w-[10rem] mb-[2.5%] py-[0.5%] rounded-[40px]"> Play
+        </button>
+      </center>
+    </div>
+  </div>
+
+  <script>
+    var isPlaying = true;
+    document.getElementById("switchButton").addEventListener("click", playOrPause);
+
+    function playOrPause() {
+      var switchButton = document.getElementById("switchButton");
+      if (isPlaying) {
+        isPlaying = false;
+        switchButton.style.background = "#22C55E"; 
+        switchButton.innerHTML = "Contiune";
+        switchButton.addEventListener("click", displayVdo);
+      } else {
+        isPlaying = true;
+        switchButton.style.background = "#ffc300";
+        switchButton.innerHTML = "Pause";
+        dswitchButton.addEventListener("click", pauseVdo);
+      }
+    }
+
+    //access the camera
+    var video = document.createElement("video");
+    video.autoplay = true;
+
+    navigator.mediaDevices.getUserMedia({
+      audio: false, video: true
+    }).then((stream) => {
+      video.srcObject = stream;
+    }).catch((err) => {
+      console.log("navigator.MediaDevices.getUerMedia error: ", err.message, err.name);
+    });
+
+    //loop drawing
+    var vdoLive = document.getElementById('canvasVideoLive');
+    var ctxVdoLive = vdoLive.getContext('2d');
+
+    function displayVdo() {
+      if (isPlaying) {
+        ctxVdoLive.drawImage(video, 0, 0, vdoLive.width, vdoLive.height);
+        setTimeout(displayVdo, 1000 / 30); //video 30fps
+      }
+    }
+    
+    function pauseVdo() {
+      if (!isPlaying) {
+        ctxVdoLive.clearRect(0, 0, vdoLive.width, vdoLive.height);
+      }
+    }
+    
+  </script>
+</body>
+</html>

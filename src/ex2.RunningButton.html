@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chest me</title>
+  <script src="./dist/tween.umd.js"></script>
+  <script src="./dist/tailwindcss.js"></script>
+</head>
+
+<body class="bg-[#1F1F1F]">
+  <button class="btn bg-white w-[7rem] h-[3rem] text-[1.25rem] text-center rounded-[10px]" 
+  id="btn" onmouseover="run()">Click Me 🤣</button>
+
+  <script>
+    var cube = document.getElementById("btn")
+    var start = [0, 0]
+
+    function render(x, y) {
+      cube.style.position = 'absolute';
+      cube.style.top = x + 'px';
+      cube.style.left = y + 'px';
+      cube.style.color = "white";
+      cube.style.background = '#'+Math.floor(Math.random()*16777215).toString(16);
+      cube.style.height = Math.floor(Math.random() * (10 - 2 + 1)) + 2 + 'rem';
+      cube.style.width = Math.floor(Math.random() * (30 - 5 + 1)) + 5 + 'rem  ';
+    }
+
+    function animate() {
+      requestAnimationFrame(animate)
+      TWEEN.update()
+    }
+    requestAnimationFrame(animate)
+
+    const init = (startX, startY, EndX, EndY) => {
+      const coords = { x: startX, y: startY }
+      const tween = new TWEEN.Tween(coords)
+        .to({ x: EndX, y: EndY }, 100)
+        .easing(TWEEN.Easing.Quadratic.Out)
+        .onUpdate(() => {
+          render(coords.x, coords.y)
+          start[0] = coords.x
+          start[1] = coords.y
+        })
+        .start()
+    }
+
+    function run() {
+      const rndx = Math.floor(Math.random() * document.documentElement.clientHeight * 0.8) 
+      const rndy = Math.floor(Math.random() * document.documentElement.clientWidth * 0.8)
+      init(start[0], start[1], rndx, rndy)
+    }
+
+
+  </script>
+
+</body>
+
+</html>
