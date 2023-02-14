@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .container {
+      width: 60%;
+      height: 80vh;
+      overflow-y : scroll;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border: black 5px solid;
+      box-shadow: 3px 3px #B0B0B0;
+      border-radius: 5px;
+    }
+
+    .header {
+      background-color: #db8181;
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 2rem;
+      color: white;
+    }
+
+    .content {
+      width: 94%;
+      display: grid;
+      margin: 3%;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3%;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .box {
+      aspect-ratio: 1/1;
+      /* width and height */
+      background-color: #84cb79;
+      border-radius: 3px;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <div class="header">Scoll Vertically</div>
+    <div class="content">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+  </div>
+</body>
+</html>
