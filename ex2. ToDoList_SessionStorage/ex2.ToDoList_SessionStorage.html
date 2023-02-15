@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-do List</title>
+  <script src="./tailwindcss.js"></script>
+  <script src="./style.css"></script>
+  <script src="./app.js" defer></script>
+
+</head>
+
+<body>
+  <div class="container w-[90%] lg:w-[960px]  absolute 
+    top-[50%] left-[50%] translate-y-[-50%] bg-blue-100
+    translate-x-[-50%] mx-auto text-[1.2rem] rounded-lg ">
+    <!-- wrapper -->
+    <center>
+      <h1 class="text-[1.7rem] my-[2.5%] text-[#192A52] font-bold">To-do List with SessionStorage</h1>
+    </center>
+
+    <form action="" autocomplete="on" onsubmit="recordData()">
+      <div class="formInput w-[95%] bg-blue-300 mx-auto md:flex md:justify-evenly text-white text-[1.35rem]
+        block rounded-lg justify-center py-[2%] items-center">
+        <!-- Task title -->
+        <div class="divInput flex md:block md:w-[32%] w-[90%] justify-center mt-[5px] md:mt-0">
+          <div class="md:ml-0 ml-[10%] w-[25%] md:w-full">
+            <label for="taskTitle">Task title</label>
+          </div>
+          <div class="md:mr-0 w-[55%] md:w-full">
+            <input type="text" id="taskTitleInput" name="taskTitle" class="input rounded-md w-full py-[1%] text-[#192A52]"
+              placeholder="  Homework Network" required>
+          </div>
+        </div>
+
+        <!-- Assignee -->
+        <div class="divInput flex md:block md:w-[24%] w-[90%] justify-center mt-[5px] md:mt-0">
+
+          <div class="md:ml-0 ml-[10%] w-[25%] md:w-full">
+            <label for="assignee">Assignee</label>
+          </div>
+          <div class="md:mr-0 w-[55%] md:w-full">
+            <input type="text" id="assignee" name="assignee" placeholder="  Chhorn Kakada"
+              class="input rounded-md w-full py-[1%] text-[#192A52]" required>
+          </div>
+        </div>
+
+        <!-- Deadline -->
+        <div class="divInput flex md:block md:w-[16%] w-[90%] justify-center mt-[5px] md:mt-0">
+          <div class="md:ml-0 ml-[10%] w-[25%] md:w-full">
+            <label for="deadline" class="text-blod">Deadline</label>
+          </div>
+          <div class="md:mr-0 w-[55%] md:w-full text-[#9CA3AF]">
+            <input type="date" id="deadline" name="deadline" required class="input rounded-md w-full py-[1%]">
+          </div>
+        </div>
+        <!-- button -->
+        <div class="md:w-[15%] w-[90%] mt-[5px] md:mt-0 text-white">
+          <div class="md:ml-0 ml-[15%] w-full md:w-full">
+            <button type="submit" class="flex gap-[10%] bg-blue-700 w-[100px] md:w-full rounded-lg 
+              justify-center py-[2.5%] items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+              <p>Add</p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Data overflow-y-scroll -->
+    <div class="w-[95%] mx-auto text-start rounded-lg scrollPadding-0 overflow-auto h-[50vh] my-[2.5%]" id="recordData">
+      <!-- a data -->
+      <!-- <div class="flex justify-evenly items-center border-2 w-[98%] mb-[1%] rounded-lg">
+        <div class="w-[24%]">
+          <p>Create Project Internet Programming</p>
+        </div>
+        <div class="w-[24%]">
+          <p>Chhorn Kakada</p>
+        </div>
+        <div class="w-[24%]">
+          <p>22.07.2021</p>
+        </div>
+        <div class="w-[15%] text-end">
+          <button>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+            </svg>
+          </button>
+        </div>
+      </div> -->
+    </div>
+
+  </div>
+
+</body>
+
+</html>
