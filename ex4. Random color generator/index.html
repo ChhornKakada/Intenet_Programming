@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navigation Bar</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+  <script src="../tailwindcss.js"></script>
+</head>
+
+<body>
+  <div class="wrapper w-[500px] absolute left-[50%] top-[50%] translate-x-[-50%]
+  translate-y-[-50%] rounded-lg">
+    <div class="">
+      <center>
+        <h1 class="text-blue-500 text-[1.5rem] py-[10px]"
+          id="header">Random Color Generator</h1>
+        <div class="bg-blue-500 w-full rounded-lg mx-auto py-[20px] border-black shadow-lg 
+          shadow-[#292D3E] " id="boxColor">
+          <div class="w-[80%] mx-auto bg-[#222222] rounded-lg text-white text-[2rem] py-[10px]">
+            <h1 class="">Background Color: </h1>
+            <h1 id="generatedColor" >#2336FB</h1>
+          </div>
+          <div class="mt-[20px] font-medium">
+            <button class="button" onclick="generateColor()">GENERATE</button>
+            <button class="button" onclick="resetColor()">RESET</button>
+          </div>
+
+        </div>
+      </center>
+      <!-- content -->
+      <div class="w-full h-[400px] mt-[10px] ">
+        <div class="w-full h-[90%] m-auto my-[4%] rounded-lg bg-[#F1F5F8] shadow-lg overflow-auto
+          flex flex-wrap gap-x-[11%] gap-y-[7%] justify-start content-start px-[50px] py-[20px] shadow-[#292D3E]"
+          id="colorContainer">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

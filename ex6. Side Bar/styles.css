@@ -1,0 +1,23 @@
+.menu:hover {
+  color: #191970;
+  text-shadow: 0px 0px 0px #191970;
+}
+
+#close:hover {
+  color: #8B0000;
+  text-shadow: 0px 0px 1px #8B0000;
+}
+
+#iconContainer a:hover {
+  color: #191970;
+  text-shadow: 0px 0px 1px #191970;
+}
+
+#list:hover {
+  color: #191970;
+  text-shadow: 0px 0px 1px #191970;
+}
+
+#sideBar > div{
+  height: 100%;
+}

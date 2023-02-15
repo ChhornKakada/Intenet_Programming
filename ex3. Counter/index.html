@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter</title>
+  <script src="../tailwindcss.js"></script>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="wrapper w-[500px] border-4 absolute left-[50%] top-[50%] translate-x-[-50%] py-[100px]
+  translate-y-[-50%] bg-[#F1F5F8] border-black shadow-lg shadow-[#292D3E] rounded-lg">
+  <center>
+    <div>
+      <h1 class="text-[2.5rem] text-[#102A42] font-bold">Counter</h1>
+    </div>
+    <div>
+      <p id="diplayNumber" class="text-[7rem] text-[#008000]"></p>
+    </div>
+    <div class="flex w-3/4 justify-evenly mt-[20px]">
+      <button class="button" onclick="decreaseNumber()">DECREASE</button>
+      <button class="button" onclick="resetNumber()" >RESET</button>
+      <button class="button" onclick="increaseNumber()" >INCREASE</button>
+    </div>
+  </center>
+    
+  </div>
+</body>
+</html>

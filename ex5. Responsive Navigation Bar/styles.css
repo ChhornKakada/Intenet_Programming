@@ -1,0 +1,14 @@
+#menuList a:hover {
+  color: #191970;
+  text-shadow: 0px 0px 1px #191970;
+}
+
+#iconContainer a:hover {
+  color: #191970;
+  text-shadow: 0px 0px 1px #191970;
+}
+
+#list:hover {
+  color: #191970;
+  text-shadow: 0px 0px 1px #191970;
+}
