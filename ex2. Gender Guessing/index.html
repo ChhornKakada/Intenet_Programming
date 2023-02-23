@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gender Guessing</title>
+  <script src="./tailwindcss.js"></script>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+  <div class="pt-[60px]">
+    <center>
+      <div>
+        <div class="text-[9rem]">🤔</div>
+        <h1 class="text-[3rem] sm:text-[5rem] font-bold" style="font-family: 'Julee', cursive;">I know your <span
+            class="text-blue-500">Gender</span></h1>
+        <div class="mb-4 text-[1.5rem] py-4">
+          <input type="text" id="username" name="" class="border-2 rounded-lg h-10 pl-2" placeholder="Tell me your name"
+            required>
+          <input type="submit" id="submitBtn" class="bg-blue-500 h-10 text-white px-4 rounded-lg" onclick="startGuessing()">
+        </div>
+      </div>
+
+      <!-- data -->
+      <div class="py-4">
+        <div id="loading" class="mt-[70px]" hidden>
+          <div class="lds-ripple">
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <div id="data" hidden class=" bg-[#F4F4F4] border-2 w-[460px] h-[220px] rounded-2xl py-4">
+          <p id="name" class="font-bold text-[2rem] mb-4"></p>
+          <p id="gender" class="font-bold text-[#F06E24] text-[3.2rem]"></p>
+          <p id="percentage" class="font-bold text-[#72AAFF] text-[1.8rem]"></p>
+        </div>
+
+      </div>
+    </center>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+
+</html>

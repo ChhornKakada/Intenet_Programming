@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nationality Guessing</title>
+  <script src="./tailwindcss.js"></script>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <div class="mt-10">
+    <center>
+      <div class="mb-6">
+        <p class="text-[8rem]">🌎</p>
+        <p class="text-[3rem] sm:text-[4rem] font-bold juleeFont">I know your
+          <span class="text-blue-500">Home</span>
+        </p>
+        <div>
+          <input type="text" id="username" name="" class="border-2 rounded-lg h-10 pl-2 text-[1.2rem] mr-2"
+            placeholder="Tell me your name" required>
+          <button id="submitBtn" class="bg-blue-500 h-10 text-white px-4 rounded-lg text-[1.3rem]"
+            onclick="startGuessing()">Guess</button>
+        </div>
+      </div>
+      <!-- loading -->
+      <div id="loading" class="mt-24" hidden>
+        <div class="lds-hourglass"></div>
+      </div>
+      <!-- output -->
+      <div class="text-[1.3rem] font-bold" id="output" hidden>
+        <div class="text-[2rem] juleeFont" id="nameInput"></div>
+        <!-- datas -->
+        <div id="results"></div>
+      </div>
+    </center>
+  </div>
+  <script src="./app.js"></script>
+</body>
+
+</html>
