@@ -12,6 +12,7 @@
 
 <!-- bg-blue-500 sm:bg-black md:bg-green-500 lg:bg-red-500 
 xl:bg-[#D3662D] 2xl:bg-[#FFFF00] 3xl:bg-[#A020F0] -->
+
 <body class="">
   <div>
     <!-- header -->
@@ -22,87 +23,36 @@ xl:bg-[#D3662D] 2xl:bg-[#FFFF00] 3xl:bg-[#A020F0] -->
           Which Univ. Do you want to study?
         </p>
         <div>
-          <select name="unis" id="unis" onchange="demo()"
+          <select name="unis" id="unis" onchange="displayUnivs()"
             class="border-2 rounded-lg h-12 pl-2 text-[1.5rem] mr-2 sm:w-[500px] w-[70%]">
-            <option value="Cambodia">Cambodia</option>
+            <option selected="selected" value="Cambodia">Cambodia</option>
             <option value="Thailand">Thailand</option>
-            <option value="USA">USA</option>
-            <option value="Loas">Loas</option>
+            <!-- <option value="France">France</option> -->
+            <option value="Canada">Canada</option>
+            <option value="Singapore">Singapore</option>
+            <option value="Ukraine">Ukraine</option>
+            <option value="Australia">Australia</option>
+            <option value="Switzerland">Switzerland</option>
+            <!-- <option value="Japan">Japan</option> -->
           </select>
         </div>
       </center>
     </div>
+
+    <!-- loading -->
+    <div id="loading" class="pt-10" hidden>
+      <center>
+        <div class="lds-ellipsis">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </center>
+      
+    </div>
     <!-- output -->
-    <div class=" w-[90%] flex justify-center mx-auto overflow-auto flex-wrap gap-10 my-5">
-      <!-- data -->
-      <div class="items-center border-2 w-[280px] text-[1.1rem] rounded-xl bg-[#F4F4F4] py-2">
-        <center>
-          <p class="self-center font-bold text-[1.2rem]">Asia Europe University</p>
-          <p class="mb-3">(Cambodia - KH)</p>
-          <a href="http://www.aeu.edu.kh/" class="flex text-blue-500"
-            target="_blank">
-            <div class="mx-auto flex gap-2 items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                <path
-                  d="M15.75 8.25a.75.75 0 01.75.75c0 1.12-.492 2.126-1.27 2.812a.75.75 0 11-.992-1.124A2.243 2.243 0 0015 9a.75.75 0 01.75-.75z" />
-                <path fill-rule="evenodd"
-                  d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM4.575 15.6a8.25 8.25 0 009.348 4.425 1.966 1.966 0 00-1.84-1.275.983.983 0 01-.97-.822l-.073-.437c-.094-.565.25-1.11.8-1.267l.99-.282c.427-.123.783-.418.982-.816l.036-.073a1.453 1.453 0 012.328-.377L16.5 15h.628a2.25 2.25 0 011.983 1.186 8.25 8.25 0 00-6.345-12.4c.044.262.18.503.389.676l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.575 15.6z"
-                  clip-rule="evenodd" />
-              </svg>
-
-              <p>http://www.aeu.edu.kh/</p>
-            </div>
-          </a>
-        </center>
-      </div>
-
-      <!-- data -->
-      <div class="items-center border-2 w-[280px] text-[1.1rem] rounded-xl bg-[#F4F4F4] py-2 text-center">
-        <p class="font-bold text-[1.2rem]">Asia Europe University</p>
-        <p class="mb-3">(Cambodia - KH)</p>
-        <a href="http://www.aeu.edu.kh/" class="flex gap-2 text-blue-500 items-center justify-center" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-            <path
-              d="M15.75 8.25a.75.75 0 01.75.75c0 1.12-.492 2.126-1.27 2.812a.75.75 0 11-.992-1.124A2.243 2.243 0 0015 9a.75.75 0 01.75-.75z" />
-            <path fill-rule="evenodd"
-              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM4.575 15.6a8.25 8.25 0 009.348 4.425 1.966 1.966 0 00-1.84-1.275.983.983 0 01-.97-.822l-.073-.437c-.094-.565.25-1.11.8-1.267l.99-.282c.427-.123.783-.418.982-.816l.036-.073a1.453 1.453 0 012.328-.377L16.5 15h.628a2.25 2.25 0 011.983 1.186 8.25 8.25 0 00-6.345-12.4c.044.262.18.503.389.676l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.575 15.6z"
-              clip-rule="evenodd" />
-          </svg>
-          <p>http://www.aeu.edu.kh/</p>
-        </a>
-      </div>
-
-      <!-- data -->
-      <div class="items-center border-2 w-[280px] text-[1.1rem] rounded-xl bg-[#F4F4F4] py-2">
-        <p>Asia Europe University</p>
-        <p class="mb-3">(Cambodia - KH)</p>
-        <a href="http://www.aeu.edu.kh/" class="flex gap-2 text-blue-500 items-center" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-            <path
-              d="M15.75 8.25a.75.75 0 01.75.75c0 1.12-.492 2.126-1.27 2.812a.75.75 0 11-.992-1.124A2.243 2.243 0 0015 9a.75.75 0 01.75-.75z" />
-            <path fill-rule="evenodd"
-              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM4.575 15.6a8.25 8.25 0 009.348 4.425 1.966 1.966 0 00-1.84-1.275.983.983 0 01-.97-.822l-.073-.437c-.094-.565.25-1.11.8-1.267l.99-.282c.427-.123.783-.418.982-.816l.036-.073a1.453 1.453 0 012.328-.377L16.5 15h.628a2.25 2.25 0 011.983 1.186 8.25 8.25 0 00-6.345-12.4c.044.262.18.503.389.676l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.575 15.6z"
-              clip-rule="evenodd" />
-          </svg>
-          <p>http://www.aeu.edu.kh/</p>
-        </a>
-      </div>
-
-      <!-- data -->
-      <div class="items-center border-2 w-[280px] text-[1.1rem] rounded-xl bg-[#F4F4F4] py-2">
-        <p>Asia Europe University</p>
-        <p class="mb-3">(Cambodia - KH)</p>
-        <a href="http://www.aeu.edu.kh/" class="flex gap-2 text-blue-500 items-center" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-            <path
-              d="M15.75 8.25a.75.75 0 01.75.75c0 1.12-.492 2.126-1.27 2.812a.75.75 0 11-.992-1.124A2.243 2.243 0 0015 9a.75.75 0 01.75-.75z" />
-            <path fill-rule="evenodd"
-              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM4.575 15.6a8.25 8.25 0 009.348 4.425 1.966 1.966 0 00-1.84-1.275.983.983 0 01-.97-.822l-.073-.437c-.094-.565.25-1.11.8-1.267l.99-.282c.427-.123.783-.418.982-.816l.036-.073a1.453 1.453 0 012.328-.377L16.5 15h.628a2.25 2.25 0 011.983 1.186 8.25 8.25 0 00-6.345-12.4c.044.262.18.503.389.676l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.575 15.6z"
-              clip-rule="evenodd" />
-          </svg>
-          <p>http://www.aeu.edu.kh/</p>
-        </a>
-      </div>
+    <div class=" w-[90%] flex justify-center mx-auto overflow-auto flex-wrap gap-10 my-5" id="uniList" hidden>
     </div>
   </div>
   <script src="./app.js"></script>
