@@ -9,3 +9,10 @@
   background-color: #2E67C3;
 }
 
+.inputForm {
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 2px solid #E5E7EB;
+  margin-bottom: 10px;
+  width: 100%;
+}
