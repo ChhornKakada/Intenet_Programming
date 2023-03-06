@@ -24,7 +24,7 @@ function fetchDataFromLocal(pageNumber) {
 
 function fetchData(pageNumber) {
   scrollerEle.innerHTML += ` <div class="font-bold text-[1.5rem] px-2">${pageNumber + 1}</div>`;
-  pageNum >= passengers.length ? fetchAPI(pageNum) : fetchDataFromLocal(pageNumber);
+  pageNum >= passengers.length ? fetchAPI(pageNumber) : fetchDataFromLocal(pageNumber);
   pageNum++;
 }
 
