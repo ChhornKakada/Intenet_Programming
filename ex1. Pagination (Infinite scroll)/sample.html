@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+ 
+<body>
+  <div id="scroller" style="width: 500px; height: 700px; background-color: grey; margin: auto; overflow-y: auto;">
+ 
+  </div>
+  <script>
+ 
+    let scrollerEle = document.getElementById("scroller");
+ 
+    function fetchAPI(pageNum) {
+      return new Promise((resolve, reject) => {
+        let data = {
+          0: ["A", "b", "C", "D"],
+          1: ["A1", "b", "C", "D"],
+          2: ["A2", "b", "C", "D"],
+          3: ["A3", "b", "C", "D"]
+        }
+ 
+        setTimeout(() => {
+          resolve(data[pageNum]);
+        }, 2000);
+      });
+    }
+ 
+    let currPageNum = 0;
+    let dataLoading = false;
+ 
+    const onLoadData = (page) => {
+      dataLoading = true;
+      console.log("Page " +  page);
+      fetchAPI(page).then((res) => {
+        console.log("Data " +res);
+        
+        // Render your array to HTML
+ 
+        currPageNum++;
+        dataLoading = false;
+      })
+    }
+ 
+    scrollerEle.addEventListener("scroll", (event) => {
+      const { scrollTop, clientHeight, scrollHeight } = scrollerEle;
+      if ((clientHeight + scrollTop) >= scrollHeight * 0.95) {
+        if (!dataLoading) {
+          onLoadData(currPageNum);
+        }
+      }
+    });
+ 
+    onLoadData(currPageNum);
+  </script>
+</body>
+ 
+</html>

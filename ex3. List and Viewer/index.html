@@ -5,39 +5,33 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nationality Guessing</title>
-  <script src="./tailwindcss.js"></script>
-  <link rel="stylesheet" href="./styles.css">
+  <title>List and Viewer</title>
+  <script src="./assets/tailwindcss.js"></script>
+  <link rel="stylesheet" href="./assets/styles.css">
 </head>
 
 <body>
-  <div class="mt-10">
-    <center>
-      <div class="mb-6">
-        <p class="text-[8rem]">🌎</p>
-        <p class="text-[3rem] sm:text-[4rem] font-bold juleeFont">I know your
-          <span class="text-blue-500">Home</span>
-        </p>
-        <div>
-          <input type="text" id="username" name="" class="border-2 rounded-lg h-10 pl-2 text-[1.2rem] mr-2"
-            placeholder="Tell me your name" required>
-          <button id="submitBtn" class="bg-blue-500 h-10 text-white px-4 rounded-lg text-[1.3rem]"
-            onclick="startGuessing()">Guess</button>
+
+  <div class=" absolute left-[50%] translate-x-[-50%] py-10">
+    <h1 class="juleeFont text-[4rem] text-center font-bold mb-6">Find your favorite 🥂?</h1>
+    <div class="flex gap-2 mx-auto">
+      <!-- data list -->
+      <div class="w-[400px] h-[700px] p-2 border-2 rounded-lg">
+        <div class="h-full rounded-lg overflow-y-scroll" id="scroller">
+          
         </div>
       </div>
-      <!-- loading -->
-      <div id="loading" class="mt-24" hidden>
-        <div class="lds-hourglass"></div>
+      <!-- view data -->
+      <div class="w-[400px] h-[700px] border-2 rounded-lg overflow-y-auto p-6"
+        id="view">
+          <center>
+            <p class="text-[2rem] font-bold">Click on thing you want to view a detail</p>
+          </center>
       </div>
-      <!-- output -->
-      <div class="text-[1.3rem] font-bold" id="output" hidden>
-        <div class="text-[2rem] juleeFont" id="nameInput"></div>
-        <!-- datas -->
-        <div id="results"></div>
-      </div>
-    </center>
+    </div>
   </div>
-  <script src="./app.js"></script>
+
+  <script src="./assets/app.js"></script>
 </body>
 
 </html>
