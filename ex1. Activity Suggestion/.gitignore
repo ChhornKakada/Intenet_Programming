@@ -1,0 +1,6 @@
+
+node_modules
+
+src/app.js
+src/styles.css
+src/tailwindcss.js

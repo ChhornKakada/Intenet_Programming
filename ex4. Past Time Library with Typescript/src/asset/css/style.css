@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dangrek&display=swap");
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Irish Grover", cursive;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0rem;
+}
+body main {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+body main img {
+  width: 7rem;
+}
+body main form {
+  width: 100%;
+}
+body main form .data_input {
+  font-size: 1.5rem;
+}
+body main form .data_input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+body main .Output {
+  font-family: "Dangrek", cursive;
+  font-size: 2.5rem;
+  color: #f06e24;
+}
