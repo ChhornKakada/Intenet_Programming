@@ -1,6 +1,6 @@
 <template>
   <center>
-    <h1 class="text-[1.2rem]">Your account have been signing up successfully.</h1>
+    <h1 class="text-[1.2rem]  mt-10 lg:mt-0">Your account have been signing up successfully.</h1>
   <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" fill="currentColor" class="text-[#41B883]"
     viewBox="0 0 16 16">
     <path

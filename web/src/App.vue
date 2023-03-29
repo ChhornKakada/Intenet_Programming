@@ -1,6 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import {useRoute} from 'vue-router'
+import {ref, onMounted, computed} from 'vue'
+
+const isHomePage = computed(() => {
+  return useRoute().path === '/home' ? true : false;
+})
+
 </script>
 
 <template>
@@ -9,10 +16,9 @@ import HelloWorld from './components/HelloWorld.vue'
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
-
-      <nav class="text-[1.2rem]">
-        <RouterLink to="/">Login</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
+      <nav class="text-[1.2rem]"  v-if="!isHomePage">
+        <RouterLink to="/" class="text-[1.2rem]">Login</RouterLink>
+        <RouterLink to="/register" class="text-[1.2rem]">Register</RouterLink>
       </nav>
     </div>
   </header>

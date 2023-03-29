@@ -32,7 +32,7 @@ function loginChecking(e) {
 <template>
   <main>
     <!-- <TheWelcome /> -->
-    <form action="#" @submit="loginChecking" class="text-[1.2rem]">
+    <form action="#" @submit="loginChecking" class="text-[1.2rem]  mt-10 lg:mt-0">
       <center>
         <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor"
           class="text-[#41B883] mb-10" viewBox="0 0 16 16">
@@ -47,7 +47,7 @@ function loginChecking(e) {
       <label for="password">Password</label> <br>
       <input type="password" v-model="password" id="password" class="input text-black" placeholder="Your password"> <br>
       <center>
-        <button type="submit" class="bg-[#1EB37C] rounded-lg text-white px-10 py-2 mt-5 w-full mb-4">Login</button>
+        <button type="submit" class="bg-[#1EB37C] hover:bg-[#13392C] rounded-lg text-white px-10 py-2 mt-5 w-full mb-4">Login</button>
       </center>
 
       <p class="text-end">Forget <span><a href="#" class="text-[#00BD7E]">password?</a></span></p>

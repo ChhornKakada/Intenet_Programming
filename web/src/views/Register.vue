@@ -32,12 +32,7 @@ function registerUser(e) {
         const data = await res.json();
         alert(data.msg)
       } else {
-        // username.value = "";
-        // password.value = "";
-        // firstName.value = "";
-        // lastName.value = "";
-        // gmail.value = "";
-        route.push('/home')
+        route.push('/success')
       }
     }
   )
@@ -46,7 +41,7 @@ function registerUser(e) {
 </script>
 
 <template>
-  <form action="#" class="w-full text-[1.2rem]" @submit="registerUser">
+  <form action="#" class="w-full text-[1.2rem] mt-10 lg:mt-0" @submit="registerUser">
     <h1 class=" text-[2.5rem] text-[#00BD7E]">Sign up</h1>
     <p>Please fill in this form to create an account.</p>
     <hr class="mb-6">
@@ -69,7 +64,7 @@ function registerUser(e) {
     <input type="password" v-model="password" id="password" placeholder="Create your password" class="input">
 
     <p>By creating an account you agree to our <span><a href="#" class="text-blue-500">Terms & Privacy</a></span>.</p>
-    <button type="submit" class="bg-[#1EB37C] rounded-lg text-white px-10 py-2 mt-5">Sign up</button>
+    <button type="submit" class="bg-[#1EB37C] hover:bg-[#13392C] rounded-lg text-white px-10 py-2 mt-5">Sign up</button>
   </form>
 </template>
 
