@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
       }
     });
     res.json({
-      msg: "Hello from Register world!"
+      msg: "Your account have been created successfully!"
     })
   } else {
     res.status(401).json({
