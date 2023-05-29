@@ -1,16 +1,28 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+const routes = require('./routes/usersRoutes');
+const port = process.env.PORT || 3000;
 var cors = require('cors')
-app.use(cors())
-var checkLogin = require("./routes/checkLogin")
-var register = require("./routes/register")
+const mongoose = require('mongoose');
+const User = require('./models/usersModel');
+const bodyParser = require('body-parser');
 
-const port = 3000
-app.use(express.json())
 
-app.use('/login', checkLogin)
-app.use('/register', register)
+app.use(cors("*"))
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+async function main() {
+  await mongoose.connect('mongodb://127.0.0.1:27017/tp9');
+}
+
+main().catch(err => console.log(err));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// app uses routers "routes"
+app.use('/user',routes)
+
+// port
+app.listen(port);
+
+console.log('user list started on port: ' + port);

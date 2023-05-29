@@ -32,7 +32,7 @@ function loginChecking(e) {
 <template>
   <main>
     <!-- <TheWelcome /> -->
-    <form action="#" @submit="loginChecking" class="text-[1.2rem]  mt-10 lg:mt-0">
+    <form action="#" @submit="loginChecking" class="text-[1.2rem] mt-10 lg:mt-0">
       <center>
         <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor"
           class="text-[#41B883] mb-10" viewBox="0 0 16 16">
