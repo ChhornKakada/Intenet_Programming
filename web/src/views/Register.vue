@@ -1,34 +1,28 @@
-<script>
+<script setup>
 import { ref, inject } from "vue";
 import axios from "axios";
+import { useRouter } from "vue-router";
 
-export default {
-  data() {
-    return {
-      user: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        username: "",
-        password: "",
-      },
-    };
-  },
-  methods: {
-    registerUser(e) {
-      e.preventDefault();
-      axios({
-        method: "post",
-        url: `http://127.0.0.1:3000/user`,
-        data: this.user,
-        headers: { "Content-Type": "application/json" },
-      }).then((res) => {
-        console.log(res.data);
-      }).catch((err) => {
-        alert(err);
-      })
-    },
-  },
+const route = inject("router");
+const user = ref({
+  firstName: "",
+  lastName: "",
+  email: "",
+  username: "",
+  password: "",
+});
+
+const registerUser = async (e) => {
+  e.preventDefault();
+  const url = "http://localhost:3000/user/register";
+  try {
+    const res = await axios.post(url, user.value);
+    console.log(res);
+    route.push("/success");
+  } catch (error) {
+    console.log(error);
+    alert(error.response.data);
+  }
 };
 </script>
 
