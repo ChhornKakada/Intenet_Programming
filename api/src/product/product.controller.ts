@@ -45,4 +45,11 @@ export class ProductController {
     return this.productService.deleteById(id);
   }
 
+  
+  // ========================================= list prices =========================================
+  @Get('/:productId/price')
+  async getListPriceOfProduct(@Param('productId') productId: any) {
+    return this.productService.listPrice(productId);
+  }
+
 }

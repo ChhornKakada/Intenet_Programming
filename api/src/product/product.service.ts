@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Product } from './schemas/product.schema';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 
@@ -115,6 +115,52 @@ export class ProductService {
         status: true,
         message: 'Deleted successfully!',
         data: deletedProduct
+      }
+    } catch (error) {
+      return {
+        status: false,
+        error: error
+      }
+    }
+  }
+
+
+  // ====================================
+  async listPrice(productId: string) {
+    try {
+      const productPrices = await this.productModel.aggregate([
+        {
+          $match: { _id: new Types.ObjectId(productId) },
+          // if you didn't add this, it will match all those 2 table and retrun as array
+        },
+        {
+          $lookup: {
+            from: "prices",
+            localField: "_id",
+            foreignField: "productId",
+            as: "prices"
+          }
+        },
+        {
+          $project: {
+            _id: 1,
+            name: 1,
+            description: 1,
+            imgUrl: 1,
+            subctgId: 1,
+            categoryId: 1,
+            prices: {
+              _id: 1,
+              price: 1,
+              store: 1
+            }
+
+          }
+        }
+      ])
+      return {
+        status: true,
+        data: productPrices
       }
     } catch (error) {
       return {

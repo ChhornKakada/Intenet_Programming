@@ -12,7 +12,7 @@ import { EnsureSignedInMiddleware } from 'src/auth/middlewares/ensure-signed-in.
 })
 
 
-// user middleware here
+// uses middleware here
 export class ProductModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
       consumer
