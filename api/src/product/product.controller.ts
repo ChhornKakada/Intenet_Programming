@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Param, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ProductModule } from './product.module';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('product')
 export class ProductController {
@@ -13,8 +14,9 @@ export class ProductController {
   // ====================================== create new ======================================
   @Post('/new')
   @UsePipes(ValidationPipe)
-  async create(@Body() product: CreateProductDto) {
-    return this.productService.create(product);
+  @UseInterceptors(FileInterceptor('image'))
+  async create(@Body() product: CreateProductDto, @UploadedFile() img: any) {
+    return this.productService.create(product, img);
   }
 
 
@@ -34,8 +36,9 @@ export class ProductController {
 
   // ========================================= update by id =========================================
   @Post('/update/:id')
-  async updateById(@Param('id') id: any, @Body() newProduct: UpdateProductDto) {
-    return this.productService.updateById(id, newProduct);
+  @UseInterceptors(FileInterceptor('image'))
+  async updateById(@Param('id') id: any, @Body() newProduct: UpdateProductDto, @UploadedFile() newImg?: any) {
+    return this.productService.updateById(id, newProduct, newImg);
   }
 
 

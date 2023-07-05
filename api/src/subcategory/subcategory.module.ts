@@ -4,11 +4,12 @@ import { SubcategoryService } from './subcategory.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { SubcategorySchema } from './schemas/subcategory.schema';
 import { EnsureSignedInMiddleware } from 'src/auth/middlewares/ensure-signed-in.middleware';
+import { FileMngService } from 'src/file-mng/file-mng.service';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'Subcategory', schema: SubcategorySchema }])],
   controllers: [SubcategoryController],
-  providers: [SubcategoryService]
+  providers: [SubcategoryService, FileMngService]
 })
 
 // user middleware here

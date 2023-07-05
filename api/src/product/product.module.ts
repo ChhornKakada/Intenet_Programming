@@ -4,11 +4,12 @@ import { ProductService } from './product.service';
 import { ProductSchema } from './schemas/product.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EnsureSignedInMiddleware } from 'src/auth/middlewares/ensure-signed-in.middleware';
+import { FileMngService } from 'src/file-mng/file-mng.service';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'Product', schema: ProductSchema}])],
   controllers: [ProductController],
-  providers: [ProductService]
+  providers: [ProductService, FileMngService]
 })
 
 

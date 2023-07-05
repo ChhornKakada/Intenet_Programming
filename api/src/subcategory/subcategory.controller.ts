@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { SubcategoryService } from './subcategory.service';
 import { CreateSubCtgDto } from './dto/create-subctg.dto';
 import { UpdateSubCtgDto } from './dto/update-subctg.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('subcategory')
 export class SubcategoryController {
@@ -13,8 +14,9 @@ export class SubcategoryController {
   // ====================================== create new ======================================
   @Post('/new')
   @UsePipes(ValidationPipe)
-  async create(@Body() subCtg: CreateSubCtgDto) {
-    return this.subCtgService.create(subCtg);
+  @UseInterceptors(FileInterceptor('image'))
+  async create(@Body() subCtg: CreateSubCtgDto, @UploadedFile() imgFile: any) {
+    return this.subCtgService.create(subCtg, imgFile);
   }
 
 
@@ -41,8 +43,9 @@ export class SubcategoryController {
 
   // ========================================= update by id =========================================
   @Post('/update/:id')
-  async updateById(@Param('id') id: any, @Body() newSubctg: UpdateSubCtgDto) {
-    return this.subCtgService.updateById(id, newSubctg);
+  @UseInterceptors(FileInterceptor('image'))
+  async updateById(@Param('id') id: any, @Body() newSubctg: UpdateSubCtgDto, @UploadedFile() newImgFile: any) {
+    return this.subCtgService.updateById(id, newSubctg, newImgFile);
   }
 
 

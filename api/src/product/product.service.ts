@@ -4,20 +4,30 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { FileMngService } from 'src/file-mng/file-mng.service';
+import { time } from 'console';
 
 @Injectable()
 export class ProductService {
 
   constructor(
     @InjectModel(Product.name)
-    private productModel: Model<Product>
+    private productModel: Model<Product>,
+
+    private fileMng: FileMngService
   ) { }
 
 
   // ========================================= create =========================================
-  async create(product: CreateProductDto): Promise<{ data?: Product, status?: boolean, error?: any }> {
+  async create(product: CreateProductDto, imgFile?: any): Promise<{ data?: Product, status?: boolean, error?: any }> {
     try {
-      const newProduct = await this.productModel.create(product);
+
+      const imgPath = this.fileMng.saveImage(imgFile, './src/img/products');
+
+      const { name, description, categoryId, subctgId } = product;
+      const newProduct = await this.productModel.create({
+        name, description, categoryId, subctgId, imgUrl: imgPath
+      });
       return {
         status: true,
         data: newProduct
@@ -73,18 +83,36 @@ export class ProductService {
 
 
   // ==================================== update by id ====================================
-  async updateById(productId: string, newProduct: UpdateProductDto):
+  async updateById(productId: string, newProduct: UpdateProductDto, newImg?: any):
     Promise<{ data?: any, status?: boolean, error?: any, message?: string }> {
     try {
-      const updatedProduct = await this.productModel.findByIdAndUpdate(
-        productId, newProduct, { new: true });
 
-      if (!updatedProduct) {
+      const existedProduct = await this.productModel.findById(productId);
+      if (!existedProduct) {
         return {
           status: false,
           message: 'Product with this ID is not found.'
         }
       }
+
+      // save new image
+      let newImgPath: string;
+      if (newImg) {
+        newImgPath = this.fileMng.saveImage(newImg, './src/img/products');
+      }
+
+      // delete old image
+      if (existedProduct.imgUrl) {
+        this.fileMng.deleteFile(existedProduct.imgUrl);
+      }
+
+      const { name, description, categoryId, subctgId } = newProduct;
+
+      const updatedProduct = await this.productModel.findByIdAndUpdate(
+        productId, {
+          name, description, categoryId, subctgId, imgUrl: newImgPath
+        }, { new: true });
+
       return {
         status: true,
         message: 'Updated successfully!',
@@ -111,6 +139,10 @@ export class ProductService {
           message: 'Product with this ID is not found.'
         }
       }
+
+      // delete img from storage
+      this.fileMng.deleteFile(deletedProduct.imgUrl);
+
       return {
         status: true,
         message: 'Deleted successfully!',

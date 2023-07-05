@@ -8,6 +8,8 @@ import { CategoryModule } from './category/category.module';
 import { SubcategoryModule } from './subcategory/subcategory.module';
 import { ProductModule } from './product/product.module';
 import { PriceModule } from './price/price.module';
+import { FileMngService } from './file-mng/file-mng.service';
+import { FileMngModule } from './file-mng/file-mng.module';
 
 @Module({
   imports: [
@@ -20,10 +22,11 @@ import { PriceModule } from './price/price.module';
     CategoryModule,
     SubcategoryModule,
     ProductModule,
-    PriceModule
+    PriceModule,
+    FileMngModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, FileMngService],
 })
 
 export class AppModule {}

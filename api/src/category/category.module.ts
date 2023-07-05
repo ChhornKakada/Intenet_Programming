@@ -4,11 +4,12 @@ import { CategoryService } from './category.service';
 import { CategorySchema } from './schemas/category.schema';
 import { MongooseModule } from '@nestjs/mongoose'
 import { EnsureSignedInMiddleware } from 'src/auth/middlewares/ensure-signed-in.middleware';
+import { FileMngService } from 'src/file-mng/file-mng.service';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'Category', schema: CategorySchema }])],
   controllers: [CategoryController],
-  providers: [CategoryService]
+  providers: [CategoryService, FileMngService]
 })
 export class CategoryModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

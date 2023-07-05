@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UploadedFile } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Category } from './schemas/category.schema';
 import { ObjectId, Types } from 'mongoose';
 import { Model } from 'mongoose';
 import { CreateCategroyDto } from './dto/create-category.dto';
 import { UpdateCategroyDto } from './dto/update-category.dto';
+import { FileMngService } from 'src/file-mng/file-mng.service';
 
 @Injectable()
 export class CategoryService {
@@ -12,16 +13,27 @@ export class CategoryService {
   constructor(
     @InjectModel(Category.name)
     private categroyModel: Model<Category>,
+
+    private fileMng: FileMngService
   ) { }
 
 
   // =================================== create new categroy  ===================================
-  async create(category: CreateCategroyDto): Promise<{ data?: Category, status?: boolean, error?: any }> {
+  async create(category: CreateCategroyDto, img?: any): Promise<{ data?: Category, status?: boolean, error?: any }> {
     try {
       const { name, description } = category;
-      const newCtg = await this.categroyModel.create({
-        name, description
-      });
+      let newCtg: any;
+      if (img) {
+        const imgPath = this.fileMng.saveImage(img, './src/img/categories');
+        newCtg = await this.categroyModel.create({
+          name, description, imgUrl: imgPath
+        });
+      } else {
+        newCtg = await this.categroyModel.create({
+          name, description
+        });
+      }
+
       return {
         status: true,
         data: newCtg
@@ -77,19 +89,32 @@ export class CategoryService {
 
 
   // ==================================== update by id ====================================
-  async updateById(ctgId: string, newCtg: UpdateCategroyDto):
+  async updateById(ctgId: string, newCtg: UpdateCategroyDto, newImg?: any):
     Promise<{ data?: any, status?: boolean, error?: any, message?: string }> {
     try {
-      const { name, description } = newCtg;
-      const updateCtg = await this.categroyModel.findByIdAndUpdate(
-        ctgId, { name, description }, { new: true });
-
-      if (!updateCtg) {
+      const existedCtg = await this.categroyModel.findById(ctgId);
+      if (!existedCtg) {
         return {
           status: false,
           message: 'Categroy with this ID is not found.'
         }
       }
+
+      // delete file 
+      if (!existedCtg.imgUrl) {
+        this.fileMng.deleteFile(existedCtg.imgUrl)
+      }
+
+      // save new img
+      let newImgPath: string;
+      if (newImg) {
+        newImgPath = this.fileMng.saveImage(newImg, './src/img/categories');
+      }
+
+      const { name, description } = newCtg;
+      const updateCtg = await this.categroyModel.findByIdAndUpdate(
+        ctgId, { name, description, newImgPath }, { new: true });
+
       return {
         status: true,
         message: 'Updated successfully!',
@@ -109,13 +134,16 @@ export class CategoryService {
     Promise<{ data?: any, status?: boolean, error?: any, message?: string }> {
     try {
       const deletedCtg = await this.categroyModel.findByIdAndDelete(ctgId);
-
       if (!deletedCtg) {
         return {
           status: false,
           message: 'Categroy with this ID is not found.'
         }
       }
+
+      // delete file in storage
+      this.fileMng.deleteFile(deletedCtg.imgUrl);
+
       return {
         status: true,
         message: 'Deleted successfully!',
@@ -139,7 +167,7 @@ export class CategoryService {
         },
         {
           $lookup: {
-            from: "subcategories" ,
+            from: "subcategories",
             localField: "_id",
             foreignField: "categoryId",
             as: "items"
@@ -155,7 +183,7 @@ export class CategoryService {
               name: 1,
               description: 1,
             }
-            
+
           }
         }
       ])
