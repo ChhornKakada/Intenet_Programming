@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <?php
+    $i = 0;
+    do {
+      $i++;
+      if ($i == 1) {
+        echo "php do... while loop $i time"."<br>";
+      } else {
+        echo "php do... while loop $i times"."<br>";
+      }
+      
+    } while ($i <= 5);
+  ?>
+</body>
+</html>
